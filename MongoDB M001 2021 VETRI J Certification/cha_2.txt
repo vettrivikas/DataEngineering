@@ -1,4 +1,5 @@
 Chapter 1: What is MongoDB?
+____________________________
 
 MongoDB stores data in BSON and you can then view it in JSON. 
 BSON is faster to parse and lighter to store than JSON.
@@ -14,12 +15,34 @@ In a MongoDB Document what is the role of fields and values?
 Answer :Each field has a value associated with it.
 
         A field is a unique identifier for a specific datapoint.
+        
+        
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-
+Chapter 2: Importing, Exporting and Querying Data
+_________________________________________________
 
 In the sample_training.trips collection a person with birth year 1961 took a trip that started at "Howard St & Centre St". What was the end station name for that trip?
 
 {"start station name" : "Howard St & Centre St", "birth year" : 1961}
 
-answer: "South End Ave & Liberty St"
+answer:  "South End Ave & Liberty St"
+
+answer:  It - is used for iterate through the cursor result
+
+Which of the following statement are True about the Mongo shell?
+
+It allows you to interact ith your MongoDb instance without using GUI
+It is a fully functioning JavaScript interpreter
+
+ObjectId
+How does the value of _id get assigened to a document?
+
+its automatically generated as an object type vales.
+you can select a non Object type when inserting a new documnt as long that value is unique to this document.
+
+Insert Error 
+
+MongoDB can always store duplicate documents in the same collection regardless of the _id value.
+
