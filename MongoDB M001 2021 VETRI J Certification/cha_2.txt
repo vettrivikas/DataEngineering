@@ -1,5 +1,9 @@
 Chapter 1: What is MongoDB?
 
+MongoDB stores data in BSON and you can then view it in JSON. 
+BSON is faster to parse and lighter to store than JSON.
+JSON supports fewer data types than BSON.
+
 In MongoDB how does a document relate to a collection?
 
 answer: Collections consist of one or many documents.
