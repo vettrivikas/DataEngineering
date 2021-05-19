@@ -33,16 +33,287 @@ answer:  It - is used for iterate through the cursor result
 
 Which of the following statement are True about the Mongo shell?
 
-It allows you to interact ith your MongoDb instance without using GUI
-It is a fully functioning JavaScript interpreter
 
-ObjectId
-How does the value of _id get assigened to a document?
+********************************************************************************************************************************************************
+Chapter 3: Creating and Manipulating Documents
+_______________________________________________
 
-its automatically generated as an object type vales.
-you can select a non Object type when inserting a new documnt as long that value is unique to this document.
+Quiz:How does the value of _id get assigned to a document?
+Answer: 
+        You can select a non ObjectId type value when inserting a new document, as long as that value is unique to this document.
+        It is automatically generated as an ObjectId type value.
 
-Insert Error 
+Quiz: Insert Error 
+      Select all true statements from the following list:
 
-MongoDB can always store duplicate documents in the same collection regardless of the _id value.
+Answer: MongoDB can store duplicate documents in the same collection, as long as their _id values are different.
+        If a document is inserted without a provided _id value, then the _id field and value will be automatically generated for the inserted document before           insertion.
+
+
+Quiz: Insert Order
+      Which of the following commands will successfully insert 3 new documents into an empty pets collection?
+Answer: 
+        db.pets.insert([{ "_id": 1, "pet": "cat" },
+                { "_id": 2, "pet": "dog" },
+                { "_id": 3, "pet": "fish" },
+                { "_id": 3, "pet": "snake" }])
+
+        db.pets.insert([{ "_id": 1, "pet": "cat" },
+                { "_id": 1, "pet": "dog" },
+                { "_id": 3, "pet": "fish" },
+                { "_id": 4, "pet": "snake" }], { "ordered": false })
+
+        db.pets.insert([{ "pet": "cat" }, { "pet": "dog" },
+                { "pet": "fish" }])
+                
+                
+Quiz: Updating Documents
+        MongoDB has a flexible data model, which means that you can have fields that contain documents, or arrays as their values.
+        Select any invalid MongoDB documents from the given choices:
+        
+Answer: None of those Above
+
+
+Quiz: Updating Documents in the shell
+      Given a pets collection where each document has the following structure and fields:
+Answer:
+        db.pets.updateMany({ "pet": "cat" },
+                   { "$set": { "type": "dangerous",
+                               "look": "adorable" }})
+        db.pets.updateMany({ "pet": "cat" },
+                   { "$push": { "climate": "continental",
+                                "look": "adorable" } })
+                                
+                                
+Quiz 1: Deleting Documents
+        The sample dataset contains a few databases that we will not use in this course. Clean up your Atlas cluster and get rid of all the collections in these databases:
+sample_analytics
+sample_geospatial
+sample_weatherdata
+Does removing all collections in a database also remove the database?
+
+Answer : YES
+
+
+Quiz 2: Deleting Documents
+        Which of the following commands will delete a collection named villains?
+
+Answer: db.villains.drop()
+
+
+******************************************************************************************************************************************************************
+
+Chapter 4: Advanced CRUD Operations
+___________________________________
+
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+        How many documents in the sample_training.zips collection have fewer than 1000 people listed in the pop field?
+
+Answer:  8065
+___________
+o complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+
+How many documents in the sample_training.zips collection have fewer than 1000 people listed in the pop field?
+
+Copy/paste the exact numeric value of the result that you get into the response field.
+db.routes.find({ "stops": { "$gt": 0 }}).pretty(),
+db.routes.find({ "stops": { "$ne": 0 }}).pretty()
+To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+
+Using the sample_training.routes collection find out which of the following statements will return all routes that have at least one stop in them?
+Which is the most succinct query to return all documents from the sample_training.inspections collection where the inspection date is either "Feb 20 2015", or "Feb 21 2015" and the company is not part of the "Cigarette Retail Dealer - 127" sector?
+Attempts Remaining:∞Unlimited Attempts
+
+Choose the best answer:
+
+
+db.inspections.find(
+  { "$or": [ { "date": "Feb 20 2015" },
+             { "date": "Feb 21 2015" } ],
+    "sector": { "$ne": "Cigarette Retail Dealer - 127" }}).pretty()
+
+To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+
+How many documents in the sample_training.zips collection have fewer than 1000 people listed in the pop field?
+
+Copy/paste the exact numeric value of the result that you get into the response field.
+
+___________
+
+Quiz 1: Logic Operators
+
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+
+Before solving this exercise, make sure to undo some of the changes that we made to the zips collection earlier in the course by running the following command:
+
+db.zips.updateMany({ "city": "HUDSON" }, { "$inc": { "pop": -10 } })
+ COPY
+How many zips in the sample_training.zips dataset are neither over-populated nor under-populated?
+
+In this case, we consider population of more than 1,000,000 to be over- populated and less than 5,000 to be under-populated.
+
+Copy/paste the exact numeric value of the result that you get into the response field.
+
+Answer : 11193
+
+
+
+
+Quiz 2: Logic Operators
+                To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+
+How many companies in the sample_training.companies dataset were
+
+either founded in 2004
+
+[and] either have the social category_code [or] web category_code,
+[or] were founded in the month of October
+
+[and] also either have the social category_code [or] web category_code?
+Copy/paste the exact numeric value of the result that you get into the response field.
+
+
+
+Answer : 149
+
+
+What are some of the uses for the $ sign in MQL?
+Answer: $ denotes an operator.
+        $ signifies that you are looking at the value of that field rather than the field name.
+        
+        
+Which of the following statements will find all the companies that have more employees than the year in which they were founded?
+Answer :
+db.companies.find(
+    { "$expr": { "$lt": [ "$founded_year", "$number_of_employees" ] } }
+  ).count()
+
+db.companies.find(
+    { "$expr": { "$gt": [ "$number_of_employees", "$founded_year" ]} }
+  ).count()
+  
+  
+  
+ Lab: $expr:
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+       How many companies in the sample_training.companies collection have the same permalink as their twitter_username? 
+       
+Answer : 1299
+
+Lab 2: Array Operators
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+        Using the sample_airbnb.listingsAndReviews collection find out how many documents have the "property_type" "House", and include "Changing table" as one of the "amenities"?
+        
+Answer : 11
+
+
+Quiz: Array Operators and Projection
+
+        Which of the following queries will return only the names of companies from the sample_training.companies collection that had exactly 8 funding rounds?
+Answer:
+        db.companies.find({ "funding_rounds": { "$size": 8 } },
+                          { "name": 1, "_id": 0 })
+                          
+                          
+Lab 2: Querying Arrays and Sub-Documents
+
+        How many inspections from the sample_training.inspections collection were conducted in the city of NEW YORK?
+
+Answer : 18279
+
+*****************************************************************************************************************************************************************
+
+Chapter 5: Indexing and Aggregation Pipeline
+____________________________________________
+
+Lab: Aggregation Framework Problem:
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+        What room types are present in the sample_airbnb.listingsAndReviews collection?
+
+Answer:
+
+        Entire home/apt
+        Private Room
+        Shared room
+
+
+Quiz: Aggregation Framework:
+        What are the differences between using aggregate() and find()?
+        
+  Answer: 
+        aggregate() allows us to compute and reshape data in the cursor.
+        aggregate() can do what find() can and more.
+
+
+Quiz 1: sort() and limit()
+        Which of the following commands will return the name and founding year for the 5 oldest companies in the sample_training.companies collection?
+Answer:        
+        db.companies.find({ "founded_year": { "$ne": null }},
+                  { "name": 1, "founded_year": 1 }
+                 ).limit(5).sort({ "founded_year": 1 })
+
+        db.companies.find({ "founded_year": { "$ne": null }},
+                  { "name": 1, "founded_year": 1 }
+                 ).sort({ "founded_year": 1 }).limit(5)
+                 
+                 
+Quiz 2: sort() and limit()
+        To complete this exercise connect to your Atlas cluster using the in-browser IDE space at the end of this chapter.
+        In what year was the youngest bike rider from the sample_training.trips collection born?
+        
+Answer : 1999
+
+
+Quiz: Introduction to Indexes
+        Jameela often queries the sample_training.routes collection by the src_airport field like this:
+
+Answer: db.routes.createIndex({ "src_airport": -1 })
+
+
+Quiz: Introduction to Data Modeling
+
+        What is data modeling?
+        
+        
+Answer :  a way to organize fields in a document to support your application performance and querying capabilities H
+
+
+Quiz: Upsert
+
+        How does the upsert option work?
+        Answer:
+        By default upsert is set to false.
+        When upsert is set to false and the query predicate returns an empty cursor then there will be no updated documents as a result of this operation.
+        When upsert is set to true and the query predicate returns an empty cursor, the update operation creates a new document using the directive from the query predicate and the update predicate.
+        
+        
+  ******************************************************************************************************************************************************************      
+        
+Chapter 6: Next Steps
+
+Quiz: Atlas Features
+        What actions are available to you via the Aggregation Builder in the Atlas Data Explorer?
+
+Answer:
+        Export pipeline to a programming language.
+        A preview of the data in the pipeline at each selected stage.
+        Syntax for each selected aggregation stage.
+        
+        
+What is MongoDB Charts? 
+
+Answer :
+        A product that helps you build visualizations of the data stored in your Atlas Cluster.
+        
+        
+        
+What is MongoDB Compass?
+
+Answer:
+
+        MongoDB's Graphical User Interface Product
+
+Finally Completed >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 
