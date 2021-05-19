@@ -1,5 +1,21 @@
+Chapter 1: What is MongoDB?
+
+In MongoDB how does a document relate to a collection?
+
+answer: Collections consist of one or many documents.
+
+In a MongoDB Document what is the role of fields and values?
+
+
+Answer :Each field has a value associated with it.
+
+        A field is a unique identifier for a specific datapoint.
+
+
+
+
 In the sample_training.trips collection a person with birth year 1961 took a trip that started at "Howard St & Centre St". What was the end station name for that trip?
 
 {"start station name" : "Howard St & Centre St", "birth year" : 1961}
 
-answer:"South End Ave & Liberty St"
+answer: "South End Ave & Liberty St"
