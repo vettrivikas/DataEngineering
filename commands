@@ -1,0 +1,77 @@
+sudo mysql -u root
+sudo -i -u postgres psql
+
+COPY users(user_first_name, user_last_name,user_email_id, user_role, created_dt) FROM '/home/data/Documents/files/users.csv'DELIMITER ','CSV HEADER;
+
+hadoop dfsadmin -safemode leave
+
+data@data:~/hadoop-2.7.2$ sbin/start-all.sh
+./hadoop-daemon.sh start datanode
+
+
+bin/hadoop dfs -ls /
+bin/hadoop dfs -mkdir -p /user/hive/wareouse
+
+KAFKA RUN:
+
+
+zookeeper-server-start.sh  config/zookeeper.properties
+kafka-server-start.sh config/server.properties 
+
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic twitterstream, testTopic 
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic testTopic
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic testTopic --from-beginning(other terminal)
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic trump --from-beginning
+
+
+data@data-Lenovo-E41-25:~/pycharm-community-2021.1/bin$ ./pycharm.sh
+
+
+rdd.select(col("visit_date"),to_date(col("visit_date"),"dd-MM-yyyy").alias("date")).show()
+
+
+
+SPARK:
+
+
+df = df1.withColumn('test', func(col('first')))
+
+df.show()
+
+df.printSchema()
+
+df = spark.read.csv("/home/data/Documents/sampledata.csv",header=True,inferSchema=True)
+df.show()
+from datetime import datetime
+from pyspark.sql.functions import col, udf
+from pyspark.sql.types import DateType
+
+func =  udf (lambda x: datetime.strptime(x, '%d-%m-%Y'), DateType())
+
+
+df = df.withColumn('transaction_date', func(col('transaction_date')))
+df = df.withColumn('visit_date', func(col("visit_date")))
+
+
+username: m001-student
+password: m001-mongodb-basics
+
+SELECT MONTH(Order_datatime) as Month, SUM(amount)  AS 'Total_ammount' FROM orders AS o JOIN customer AS a  ON o.customer_id = a.customer_id WHERE a.age > 18 GROUP BY o.Month;
+
+
+cca 175
+================================
+Update pass on mysql
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'SuperSecretPassword!123';
+GRANT ALL ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
+================================
+
+CREATE TABLE IF NOT EXISTS employee (employee_id int, name String, salary String)  ROW FORMAT delimited FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+

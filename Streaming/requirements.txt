@@ -1,0 +1,6 @@
+
+consumerKey = '3Tjh3ayKRVEzm7UxffG9nHBOW'
+consumerSecret = 'ZIba9PWorl1cFK0nUdz2ZKnmTIOWhxEwg7WjmhKTktdCuVAdys'
+accessToken = '1385186742223839234-rLchmHAComxZ80g0pEZnMfRpl39tsz'
+accessTokenSecret = 'hsjFWzHByn3dMfazufzG43my3ejKX7IzZjQe4hbhnY5LN'
+

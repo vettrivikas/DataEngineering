@@ -20,10 +20,10 @@ cursor=cnx.cursor()
 
 #consumer key, consumer secret,
 #access token, access secret.
-ckey =''
-csecret =''
-atoken =''
-asecret =''
+ckey ='3Tjh3ayKRVEzm7UxffG9nHBOW'
+csecret ='ZIba9PWorl1cFK0nUdz2ZKnmTIOWhxEwg7WjmhKTktdCuVAdys'
+atoken ='1385186742223839234-rLchmHAComxZ80g0pEZnMfRpl39tsz'
+asecret ='hsjFWzHByn3dMfazufzG43my3ejKX7IzZjQe4hbhnY5LN'
 
 
 class listener(StreamListener):
