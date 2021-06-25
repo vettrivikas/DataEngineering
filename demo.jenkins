@@ -1,0 +1,14 @@
+pipeline {
+    agent any 
+    stages {
+        stage('build') {
+            steps {
+                sh 'echo "Hello DataEngine "'
+                sh """
+                   echo "hi this is Pentaho"
+                   ls -lah
+                """
+            }
+        }
+    }
+}
