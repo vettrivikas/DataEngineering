@@ -6,10 +6,10 @@ import ast
 
 if sys.platform.startswith('linux'):
     sys.path.append("configpath")
-    sys.path.append("")
+    sys.path.append("configpath")
 
 elif sys.platform.startswith('win'):
-    sys.path.append(r"C:/Users/vetrij/PycharmProjects/")
+    sys.path.append(r"path")
 
 from config import servers,aws_access_key_id,aws_secret_access_key,to_addr, cc_addr
 from MailUtils import sendmail
