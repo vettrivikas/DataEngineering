@@ -1,0 +1,13 @@
+---------------- Git commands -------------------
+
+git status
+git commit -a -m "changes"
+git push origin 
+
+
+git branch branch2
+git checkout branch2    git -b checkout branch2
+git status
+git commit -a -m "branch2commit"
+git push - not wokring
+git push origin branch2
