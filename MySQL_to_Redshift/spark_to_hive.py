@@ -39,3 +39,34 @@ df = spark.sql("select 4 as id, 'JKL' as value, 'Spark Write Append Mode' as New
 df.show()
 df.write.mode("append").saveAsTable("test_db.test_table2")
 spark.sql("select * from test_db.test_table2").show()
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+
+
+
+def save_table(sparkSession, dataframe, database, table_name, save_format="PARQUET"):
+    print("Saving result in {}.{}".format(database, table_name))
+    output_schema = "," \
+        .join(["{} {}".format(x.name.lower(), x.dataType) for x in list(dataframe.schema)]) \
+        .replace("StringType", "STRING") \
+        .replace("IntegerType", "INT") \
+        .replace("DateType", "DATE") \
+        .replace("LongType", "INT") \
+        .replace("TimestampType", "INT") \
+        .replace("BooleanType", "BOOLEAN") \
+        .replace("FloatType", "FLOAT")\
+        .replace("DoubleType","FLOAT")
+    output_schema = re.sub(r'DecimalType[(][0-9]+,[0-9]+[)]', 'FLOAT', output_schema)
+
+    sparkSession.sql("DROP TABLE IF EXISTS {}.{}".format(database, table_name))
+
+    query = "CREATE EXTERNAL TABLE IF NOT EXISTS {}.{} ({}) STORED AS {} LOCATION '/user/hive/{}/{}'" \
+        .format(database, table_name, output_schema, save_format, database, table_name)
+    sparkSession.sql(query)
+    dataframe.write.insertInto('{}.{}'.format(database, table_name),overwrite = True)
