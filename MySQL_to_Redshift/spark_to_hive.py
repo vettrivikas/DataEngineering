@@ -11,9 +11,15 @@ spark = SparkSession.builder \
     .enableHiveSupport() \
     .getOrCreate()
 
+query = "('select * from testdb.test_table limit 10') data"
+df = spark.read.format("jdbc").option("url", "jdbc:mysql://localhost:3306") \
+     .option("driver", "com.mysql.jdbc.Driver").option("dbtable", query) \
+     .option("user", 'user_name').option("password", 'pass').load()
+df.show(10)
+
 # Read data from Hive database test_db, table name: test_table.
-df = spark.sql("select * from test_db.test_table")
-df.show()
+#df = spark.sql("select * from test_db.test_table")
+#df.show()
 
 # Let's add a new column
 df = df.withColumn("NewColumn",lit('Test'))
