@@ -31,11 +31,3 @@ The projects in this repository cover the following areas:
 Specific tools and dependencies may vary by project and are documented within individual folders.
 
 ---
-
-## Repository Structure
-DataEngineering/
-├── etl-projects/
-├── data-processing/
-├── automation-scripts/
-├── certifications-notes/
-└── README.md
